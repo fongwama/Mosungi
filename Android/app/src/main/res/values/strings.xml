@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Mosungui</string>
+    <string name="title_activity_connexion">Connexion</string>
+    <string name="title_activity_inscription">Inscription</string>
+    <string name="title_activity_accueil">Mosungui</string>
+    <string name="pseudo">Pseudo</string>
+    <string name="password">Mot de passe</string>
+    <string name="connexion">Connexion</string>
+    <string name="sign_up"> S\'inscrire</string>
+    <string name="no_acount">Avez vous un compte? </string>
+    <string name="name">Nom</string>
+    <string name="lastname">Prénom</string>
+    <string name="phone">Téléphone</string>
+    <string name="mail">Adresse électronique</string>
+    <string name="password2">Répéter le même mot de passe</string>
+    <string name="patient">Patients</string>
+    <string name="agenda">Agenda</string>
+    <string name="title_activity_add_patient">Nouveau patient</string>
+    <string name="title_activity_add_agenda">Ajouter à l\'agenda</string>
+    <string name="date">Date de naissance</string>
+    <string name="adresse">Adresse</string>
+    <string name="cas">Cas du patient</string>
+    <string name="add">Ajouter</string>
+    <string name="title_activity_add_meeting">AddMeetingActivity</string>
+    <string name="choose_patient">Choisir le patient</string>
+    <string name="meeting_date">Choisir la date </string>
+    <string name="meeting_hour">Choisir l\'heure</string>
+    <string name="motif">Contenu du message</string>
+    <string name="alert_empty">Veuillez remplir tous les champs</string>
+    <string name="alert_phone_format">Numéro de téléphone non valide</string>
+    <string name="send_message">Envoyer un message</string>
+    <string name="send">Envoyer</string>
+    <string name="cancel">Annuler</string>
+    <string name="to">A</string>
+</resources>
