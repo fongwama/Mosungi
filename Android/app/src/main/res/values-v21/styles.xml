@@ -1,0 +1,23 @@
+<resources>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:spinnerStyle">@style/SpinnerAppTheme</item>
+        <item name="android:spinnerDropDownItemStyle">@style/SpinnerDropDownItemAppTheme</item>
+    </style>
+
+    <style name="_AppTheme" parent="Theme.AppCompat.Light">
+
+        <item name="android:dropDownSpinnerStyle">@style/SpinnerAppTheme</item>
+
+    </style>
+
+    <style name="SpinnerAppTheme" parent="android:Widget.Holo.Light.Spinner">
+        <item name="android:background">@drawable/apptheme_spinner_background_holo_light</item>
+        <item name="android:dropDownSelector">@drawable/apptheme_list_selector_holo_light</item>
+    </style>
+</resources>
