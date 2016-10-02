@@ -8,7 +8,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
-import com.fongwama.mosungi.ui.activity.AccueilActivity;
+import com.fongwama.mosungi.ui.activity.HomeActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 }catch (InterruptedException e){
                     e.printStackTrace();
                 }finally {
-                    startActivity(new Intent(MainActivity.this, AccueilActivity.class));
+                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
                 }
             }
         }; time.start();

@@ -47,7 +47,7 @@ public class ConnexionActivity extends AppCompatActivity {
                     String pseudoText   = pseudo.getText().toString();
                     String passwordText = password.getText().toString();
 
-                    startActivity(new Intent(ConnexionActivity.this, AccueilActivity.class));
+                    startActivity(new Intent(ConnexionActivity.this, HomeActivity.class));
                 }
                 else
                 {
