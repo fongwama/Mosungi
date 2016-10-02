@@ -30,4 +30,5 @@ dependencies {
 
     compile 'com.github.clans:fab:1.6.2'
     compile 'com.github.flavienlaurent.datetimepicker:library:0.0.2'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
 }
