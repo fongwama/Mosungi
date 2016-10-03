@@ -8,7 +8,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
-import com.fongwama.mosungi.ui.activity.AccueilActivity;
+import com.fongwama.mosungi.ui.activity.HomeActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,12 +21,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         appName = (TextView)findViewById(R.id.app_name);
+
+        //defining a font for the main TextView
         Typeface font =Typeface.createFromAsset(getAssets(), "Fibon_Sans_Regular.otf");
         appName.setTypeface(font);
 
         animation= AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
         appName.startAnimation(animation);
 
+        //make the app wait for 2 seonds before leaving the current acctivity
         Thread time = new Thread(){
             @Override
             public void run() {
@@ -35,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 }catch (InterruptedException e){
                     e.printStackTrace();
                 }finally {
-                    startActivity(new Intent(MainActivity.this, AccueilActivity.class));
+                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
                 }
             }
         }; time.start();

@@ -1,7 +1,6 @@
 package com.fongwama.mosungi.ui.activity;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -9,15 +8,13 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 
 import com.fongwama.mosungi.R;
-import com.fongwama.mosungi.data.MyDbHelper;
 import com.fongwama.mosungi.ui.fragments.FragmentAgenda;
 import com.fongwama.mosungi.ui.fragments.FragmentPatients;
 
-public class AccueilActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -75,14 +72,14 @@ public class AccueilActivity extends AppCompatActivity {
         fab_add_inter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AccueilActivity.this, AddAgendaActivity.class));
+                startActivity(new Intent(HomeActivity.this, AddAgendaActivity.class));
             }
         });
 
         fab_add_patient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AccueilActivity.this, AddPatientActivity.class));
+                startActivity(new Intent(HomeActivity.this, AddPatientActivity.class));
             }
         });
     }

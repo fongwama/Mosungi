@@ -31,7 +31,7 @@
             android:label="@string/title_activity_inscription"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.activity.AccueilActivity"
+            android:name=".ui.activity.HomeActivity"
             android:label="@string/title_activity_accueil"
             android:theme="@style/AppTheme" />
         <activity
@@ -45,11 +45,7 @@
         <activity
             android:name=".ui.activity.AddMeetingActivity"
             android:label="@string/title_activity_add_meeting"
-            android:theme="@style/AppTheme"></activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
