@@ -39,6 +39,7 @@ public class AddPatientActivity extends AppCompatActivity implements DatePickerD
     private RadioButton sexe_checked;
 
     private FloatingActionButton pick_date;
+
     public static final String DATEPICKER_TAG = "datepicker";
 
     MyFunctions myFunctions = new MyFunctions();
@@ -64,8 +65,17 @@ public class AddPatientActivity extends AppCompatActivity implements DatePickerD
         sexe_checked    = (RadioButton) sexe.findViewById(sexe.getCheckedRadioButtonId());
 
         pick_date = (FloatingActionButton) findViewById(R.id.pick_date);
+
         final Calendar calendar = Calendar.getInstance();
         final DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+
+        date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datePickerDialog.show(getSupportFragmentManager(), DATEPICKER_TAG);
+            }
+        });
+
 
         pick_date.setOnClickListener(new View.OnClickListener() {
             @Override
