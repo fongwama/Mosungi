@@ -18,8 +18,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    private com.github.clans.fab.FloatingActionButton fab_add_inter;
-    private com.github.clans.fab.FloatingActionButton fab_add_patient;
+    private com.github.clans.fab.FloatingActionButton fabAddInter;
+    private com.github.clans.fab.FloatingActionButton fabAddPatient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,7 @@ public class HomeActivity extends AppCompatActivity {
         tabLayout = (TabLayout)findViewById(R.id.tabLayout);
         viewPager = (ViewPager)findViewById(R.id.viewpager);
 
+        //Ajout des deux TAB utilisés dans l'application
         tabLayout.addTab(tabLayout.newTab());
         tabLayout.addTab(tabLayout.newTab());
 
@@ -64,19 +65,20 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        //Synchronisation du TabLayout avec le ViewPager
         tabLayout.setupWithViewPager(viewPager);
 
 
-        fab_add_inter = (com.github.clans.fab.FloatingActionButton)findViewById(R.id.fab_add_inter);
-        fab_add_patient = (com.github.clans.fab.FloatingActionButton)findViewById(R.id.fab_add_patient);
-        fab_add_inter.setOnClickListener(new View.OnClickListener() {
+        fabAddInter = (com.github.clans.fab.FloatingActionButton)findViewById(R.id.fab_add_inter);
+        fabAddPatient = (com.github.clans.fab.FloatingActionButton)findViewById(R.id.fab_add_patient);
+        fabAddInter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HomeActivity.this, AddAgendaActivity.class));
             }
         });
 
-        fab_add_patient.setOnClickListener(new View.OnClickListener() {
+        fabAddPatient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HomeActivity.this, AddPatientActivity.class));

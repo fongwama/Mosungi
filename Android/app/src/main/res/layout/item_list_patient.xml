@@ -11,7 +11,7 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        app:cardCornerRadius="0dp"
         >
 
         <LinearLayout
@@ -34,66 +34,44 @@
                     android:src="@color/colorAccent" />
 
                 <TextView
+                    android:id="@+id/profilTextImg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:text="N"
+                    android:maxLength="1"
+                    android:textAllCaps="true"
                     android:textColor="@color/icons"
-                    android:textSize="30sp" />
+                    android:textSize="29sp" />
             </RelativeLayout>
 
-            <android.support.constraint.ConstraintLayout
+            <RelativeLayout
                 android:id="@+id/name_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginStart="2dp"
                 android:layout_marginLeft="2dp">
 
                 <TextView
                     android:id="@+id/nom_prenom"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:maxLines="1"
                     android:textColor="@color/colorPrimaryText"
-                    android:textSize="25sp"
-                    tools:layout_constraintTop_creator="1"
-                    tools:layout_constraintRight_creator="1"
-                    app:layout_constraintRight_toRightOf="@+id/categorie"
-                    tools:layout_constraintLeft_creator="1"
-                    app:layout_constraintLeft_toLeftOf="@+id/categorie"
-                    android:visibility="invisible"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textSize="25sp" />
 
-                <TextView
-                    android:id="@+id/nom_prenomd"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:text="Steve ndende aidid is here"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="25sp"
-                    tools:layout_constraintTop_creator="1"
-                    tools:layout_constraintRight_creator="1"
-                    app:layout_constraintRight_toRightOf="@+id/categorie"
-                    tools:layout_constraintLeft_creator="1"
-                    app:layout_constraintLeft_toLeftOf="@+id/categorie"
-                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/categorie"
-                    android:layout_width="320dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Cardiologie"
+                    android:layout_below="@+id/nom_prenom"
                     android:maxLines="1"
-                    android:textColor="@color/colorSecondaryText"
-                    tools:layout_constraintTop_creator="1"
-                    app:layout_constraintTop_toBottomOf="@+id/nom_prenom"
-                    tools:layout_constraintLeft_creator="1"
-                    app:layout_constraintLeft_toLeftOf="parent" />
-            </android.support.constraint.ConstraintLayout>
+                    android:textColor="@color/colorSecondaryText" />
+            </RelativeLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>

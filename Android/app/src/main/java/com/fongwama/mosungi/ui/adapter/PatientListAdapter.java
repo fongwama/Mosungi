@@ -18,6 +18,8 @@ import com.fongwama.mosungi.R;
 import com.fongwama.mosungi.model.Patient;
 import com.fongwama.mosungi.ui.dialogfragment.SendMessageToPatient;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * Created by Karl on 27/07/2016.
  */
@@ -40,6 +42,7 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.nomPrenom.setText(listPatients.get(position).getNom()+" "+listPatients.get(position).getPrenom());
+        holder.profilImageTxt.setText(listPatients.get(position).getNom());
     }
 
     @Override
@@ -50,11 +53,13 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public TextView nomPrenom;
+        public TextView profilImageTxt;
 
         public ViewHolder(View itemLayout)
         {
             super(itemLayout);
             nomPrenom = (TextView) itemLayout.findViewById(R.id.nom_prenom);
+            profilImageTxt = (TextView) itemLayout.findViewById(R.id.profilTextImg);
 
             itemLayout.setOnClickListener(this);
         }
