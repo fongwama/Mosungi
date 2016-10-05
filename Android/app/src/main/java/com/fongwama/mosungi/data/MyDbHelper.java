@@ -51,8 +51,18 @@ public class MyDbHelper extends SQLiteOpenHelper{
                 MyContracts.TablePatient.TELEPHONE+" TEXT NOT NULL, "+
                 MyContracts.TablePatient.CAS+" TEXT NOT NULL)";
 
+        final String SQL_AGENDA = "CREATE TABLE "+
+                MyContracts.TableAgenda.TABLE_NAME+" ("+
+                MyContracts.TableAgenda._ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                MyContracts.TableAgenda.TITRE+" TEXT NOT NULL, "+
+                MyContracts.TableAgenda.MESSAGE+" TEXT , "+
+                MyContracts.TableAgenda.DATE+" TEXT NOT NULL, "+
+                MyContracts.TableAgenda.DATE_MILLISS+" TEXT ,"+
+                MyContracts.TableAgenda.ID_PATIENT+" INTEGER);";
+
         //On exécute la requete de création de la table patient
         db.execSQL(SQL_PATIENT);
+        db.execSQL(SQL_AGENDA);
     }
 
     @Override
