@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         animation= AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
         appName.startAnimation(animation);
 
-        //make the app wait for 2 seonds before leaving the current acctivity
+        //make the app wait for 2 seonds before exiting the current acctivity
         Thread time = new Thread(){
             @Override
             public void run() {

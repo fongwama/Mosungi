@@ -19,4 +19,16 @@ public class MyContracts
         public static final String CAS          = "cas_patient";
 
     }
+
+    public static class TableAgenda implements BaseColumns {
+
+        public static final String TABLE_NAME   = "agenda";
+
+        public static final String TITRE          = "libele_agenda";
+        public static final String MESSAGE    = "sms_agenda";
+        public static final String DATE_MILLISS   = "date_agenda";
+        public static final String DATE          = "date_human_agenda";
+        public static final String ID_PATIENT          = "id_patient_agenda";
+
+    }
 }
