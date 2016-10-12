@@ -26,6 +26,13 @@ public class FragmentPatients extends Fragment{
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
 
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -34,6 +41,7 @@ public class FragmentPatients extends Fragment{
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
 
 
         final MyDbHelper myDbHelper             = new MyDbHelper(getActivity());
