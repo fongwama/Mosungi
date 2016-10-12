@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.fongwama.mosungi.model.AgendaALarm;
 import com.fongwama.mosungi.model.Patient;
 
 /**
@@ -36,10 +37,32 @@ public class MyDbHelper extends SQLiteOpenHelper{
             MyContracts.TablePatient.TELEPHONE,
             MyContracts.TablePatient.CAS,
     };
+    public static final String[] COLUMN_AGENDA = new String[]{
+            MyContracts.TableAgenda._ID,
+            MyContracts.TableAgenda.TITRE,
+            MyContracts.TableAgenda.MESSAGE,
+            MyContracts.TableAgenda.MESSAGE_NUMBERS,
+            MyContracts.TableAgenda.DATE_MILLIS_SET,
+            MyContracts.TableAgenda.DATE_MILLIS_TARGET,
+            MyContracts.TableAgenda.DATE_TARGET,
+            MyContracts.TableAgenda.DATE_TARGET,
+            MyContracts.TableAgenda.ALARM_REPEAT_COUNT,
+            MyContracts.TableAgenda.ALARM_REPEAT_TIME_INTERVAL,
+            MyContracts.TableAgenda.ALARM_MUSIC_PATH,
+            MyContracts.TableAgenda.ALARM_VOLUME
+    };
 
     @Override
     public void onCreate(SQLiteDatabase db)
     {
+
+        /* TODO *** CREATION des TABLES *** */
+
+        final String SQL_CATEGORIE = "CREATE TABLE "+
+                MyContracts.TableCategorie.TABLE_NAME+" ("+
+                MyContracts.TableCategorie._ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                MyContracts.TableCategorie.TITRE+" TEXT NOT NULL,"+
+                MyContracts.TableCategorie.DESCRIPTION+" TEXT);";
 
         final String SQL_PATIENT = "CREATE TABLE "+
                 MyContracts.TablePatient.TABLE_NAME+" ("+
@@ -49,18 +72,26 @@ public class MyDbHelper extends SQLiteOpenHelper{
                 MyContracts.TablePatient.SEXE+" TEXT NOT NULL, "+
                 MyContracts.TablePatient.DATE+" TEXT NOT NULL, "+
                 MyContracts.TablePatient.TELEPHONE+" TEXT NOT NULL, "+
-                MyContracts.TablePatient.CAS+" TEXT NOT NULL)";
+                MyContracts.TablePatient.CAS+" TEXT NOT NULL"+
+                MyContracts.TablePatient.CATEGORIE+" TEXT NOT NULL);";
 
         final String SQL_AGENDA = "CREATE TABLE "+
                 MyContracts.TableAgenda.TABLE_NAME+" ("+
                 MyContracts.TableAgenda._ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
                 MyContracts.TableAgenda.TITRE+" TEXT NOT NULL, "+
                 MyContracts.TableAgenda.MESSAGE+" TEXT , "+
-                MyContracts.TableAgenda.DATE+" TEXT NOT NULL, "+
-                MyContracts.TableAgenda.DATE_MILLISS+" TEXT ,"+
-                MyContracts.TableAgenda.ID_PATIENT+" INTEGER);";
+                MyContracts.TableAgenda.DATE_MILLIS_SET+" TEXT NOT NULL, "+
+                MyContracts.TableAgenda.DATE_MILLIS_TARGET+" TEXT NOT NULL,"+
+                MyContracts.TableAgenda.DATE_SET+" TEXT NOT NULL,"+
+                MyContracts.TableAgenda.DATE_TARGET+" TEXT NOT NULL,"+
+                MyContracts.TableAgenda.MESSAGE_NUMBERS+" TEXT,"+
+                MyContracts.TableAgenda.ALARM_MUSIC_PATH+" TEXT, "+
+                MyContracts.TableAgenda.ALARM_VOLUME+" INTEGER"+
+                MyContracts.TableAgenda.ALARM_REPEAT_TIME_INTERVAL+" INTEGER"+
+                MyContracts.TableAgenda.ALARM_REPEAT_COUNT+" INTEGER);";
 
         //On exécute la requete de création de la table patient
+        db.execSQL(SQL_CATEGORIE);
         db.execSQL(SQL_PATIENT);
         db.execSQL(SQL_AGENDA);
     }
@@ -121,6 +152,44 @@ public class MyDbHelper extends SQLiteOpenHelper{
             while (cursor.moveToNext());
         }
         return listPatients;
+    }
+
+    public List<AgendaALarm> getAllAlarm()
+    {
+        SQLiteDatabase db   = getReadableDatabase();
+        Cursor cursor       = db.query(MyContracts.TableAgenda.TABLE_NAME, COLUMN_AGENDA, null, null, null, null, null);
+        List<AgendaALarm> listAlarms = new ArrayList<>();
+
+        if(cursor==null)
+            return null;
+
+        if (cursor.moveToFirst())
+        {
+            do
+            {
+                AgendaALarm alarm = new AgendaALarm();
+
+                alarm.setId(cursor.getInt(cursor.getColumnIndex(MyContracts.TablePatient._ID)));
+                alarm.setTitre(cursor.getString(cursor.getColumnIndex(MyContracts.TableAgenda.TITRE)));
+                alarm.setMessage(cursor.getString(cursor.getColumnIndex(MyContracts.TableAgenda.MESSAGE)));
+                alarm.setMessageNumbers(cursor.getString(cursor.getColumnIndex(MyContracts.TableAgenda.MESSAGE_NUMBERS)));
+
+                alarm.setDateMillisNow(cursor.getLong(cursor.getColumnIndex(MyContracts.TableAgenda.DATE_MILLIS_SET)));
+                alarm.setDateMillisWakeUp(cursor.getLong(cursor.getColumnIndex(MyContracts.TableAgenda.DATE_MILLIS_TARGET)));
+                alarm.setDateHumanNow(cursor.getString(cursor.getColumnIndex(MyContracts.TableAgenda.DATE_SET)));
+                alarm.setDateHumanWakeUp(cursor.getString(cursor.getColumnIndex(MyContracts.TableAgenda.DATE_TARGET)));
+
+                alarm.setRepeatCount((char)cursor.getInt(cursor.getColumnIndex(MyContracts.TableAgenda.ALARM_REPEAT_COUNT)));
+                alarm.setRepeatTimeInterval(cursor.getInt(cursor.getColumnIndex(MyContracts.TableAgenda.ALARM_REPEAT_TIME_INTERVAL)));
+                alarm.setMusicPath(cursor.getString(cursor.getColumnIndex(MyContracts.TableAgenda.ALARM_MUSIC_PATH)));
+                alarm.setVolumeLevel(cursor.getInt(cursor.getColumnIndex(MyContracts.TableAgenda.ALARM_VOLUME)));
+
+                listAlarms.add(alarm);
+
+            }
+            while (cursor.moveToNext());
+        }
+        return listAlarms;
     }
 
     //Nous avons besoin de cette méthode pour le Spinner
