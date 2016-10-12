@@ -24,6 +24,9 @@ public class AgendaALarm implements Parcelable{
 
     private boolean state;
 
+    public AgendaALarm() {
+    }
+
     public AgendaALarm(int id, String titre, String message, String messageNumbers, long dateMillisNow, long dateMillisWakeUp, String dateHumanNow, String dateHumanWakeUp, char repeatCount, int repeatTimeInterval, String musicPath, int volumeLevel, boolean state) {
         this.id = id;
         this.titre = titre;
