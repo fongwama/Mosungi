@@ -47,7 +47,7 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
 
     @Override
     public int getItemCount() {
-        return listPatients.size();
+        return listPatients != null ? listPatients.size() : 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
