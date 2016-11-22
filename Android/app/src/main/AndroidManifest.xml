@@ -14,10 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="sensorPortrait"
+            android:configChanges="orientation"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -37,15 +40,19 @@
         <activity
             android:name=".ui.activity.AddPatientActivity"
             android:label="@string/title_activity_add_patient"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="sensorPortrait"
+            android:configChanges="orientation"
+            android:parentActivityName=".MainActivity"
+            />
         <activity
             android:name=".ui.activity.AddAgendaActivity"
             android:label="@string/title_activity_add_agenda"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".ui.activity.AddMeetingActivity"
-            android:label="@string/title_activity_add_meeting"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="sensorPortrait"
+            android:configChanges="orientation"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".MainActivity"
+            />
     </application>
 
 </manifest>
