@@ -44,11 +44,11 @@ public class MyContracts
            Pourquoi? ...L'agenda a deux types d'alrme, celle qui envoi un texto au(x) patient(s) et
            celle qui Rappelle au Docteur une Tache.
         */
-        public static final String ALARM_REPEAT_COUNT  = "date_unix_target_agenda";
+        public static final String ALARM_REPEAT_COUNT  = "alarm_rc_agenda";
 
         // En: Let the user chose after how many minutes the Alarme has to cme back or not (in MINUTES)
         //(in case he is abscent during the 1st Alarm Ring)
-        public static final String ALARM_REPEAT_TIME_INTERVAL  = "date_unix_target_agenda";
+        public static final String ALARM_REPEAT_TIME_INTERVAL  = "alarm_interval_agenda";
 
         /*En: To avoid multiple julians DATE calculations, it's better to save the Human understandable date once in the DB
               so that the Collections Adapter won't have to process it all time (Performances Optimization)

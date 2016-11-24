@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fongwama.mosungi.model.AgendaALarm;
 import com.fourmob.datetimepicker.date.DatePickerDialog;
 import com.sleepbot.datetimepicker.time.RadialPickerLayout;
 import com.sleepbot.datetimepicker.time.TimePickerDialog;
@@ -34,8 +35,8 @@ import com.fongwama.mosungi.ui.adapter.SpinnerAdapter;
 
 public class AddAgendaActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
-    private TextInputEditText date;
-    private TextInputEditText hour;
+    private TextInputEditText dateEdit;
+    private TextInputEditText hourEdit;
     private TextInputEditText message;
 
     private Spinner spinner;
@@ -44,7 +45,8 @@ public class AddAgendaActivity extends AppCompatActivity implements DatePickerDi
     private FloatingActionButton pick_hour;
 
     MyFunctions myFunctions = new MyFunctions();
-
+    MyDbHelper myDbHelper;
+    Calendar calendar;
     public static final String DATEPICKER_TAG = "datepicker";
     public static final String TIMEPICKER_TAG = "timepicker";
 
@@ -58,11 +60,11 @@ public class AddAgendaActivity extends AppCompatActivity implements DatePickerDi
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        date    = (TextInputEditText) findViewById(R.id.date);
-        hour    = (TextInputEditText) findViewById(R.id.hour);
-        message = (TextInputEditText) findViewById(R.id.message);
+        dateEdit = (TextInputEditText) findViewById(R.id.dates);
+        hourEdit = (TextInputEditText) findViewById(R.id.hours);
+        message  = (TextInputEditText) findViewById(R.id.message);
 
-        final MyDbHelper myDbHelper = new MyDbHelper(getApplicationContext());
+        myDbHelper = new MyDbHelper(getApplicationContext());
 
         ///////////////////////////////////////////////////////////////////////
         //////////////////////////
@@ -93,8 +95,7 @@ public class AddAgendaActivity extends AppCompatActivity implements DatePickerDi
         pick_date = (FloatingActionButton) findViewById(R.id.pick_date);
         pick_hour = (FloatingActionButton) findViewById(R.id.pick_hour);
 
-
-        final Calendar calendar = Calendar.getInstance();
+        calendar = Calendar.getInstance();
         final DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         final TimePickerDialog timePickerDialog = TimePickerDialog.newInstance(this, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), false, false);
 
@@ -106,8 +107,20 @@ public class AddAgendaActivity extends AppCompatActivity implements DatePickerDi
                 datePickerDialog.show(getSupportFragmentManager(), DATEPICKER_TAG);
             }
         });
+        dateEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datePickerDialog.show(getSupportFragmentManager(), DATEPICKER_TAG);
+            }
+        });
 
         pick_hour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                timePickerDialog.show(getSupportFragmentManager(), TIMEPICKER_TAG);
+            }
+        });
+        hourEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 timePickerDialog.show(getSupportFragmentManager(), TIMEPICKER_TAG);
@@ -130,11 +143,16 @@ public class AddAgendaActivity extends AppCompatActivity implements DatePickerDi
         findViewById(R.id.validate).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (myFunctions.checkTextInputEditText(date) &&
-                        myFunctions.checkTextInputEditText(hour) &&
+                if (myFunctions.checkTextInputEditText(dateEdit) &&
+                        myFunctions.checkTextInputEditText(hourEdit) &&
                         myFunctions.checkTextInputEditText(message)) {
 
+                    AgendaALarm alarm = new AgendaALarm();
+                    calendar
+                    alarm.setMessage(message.getText().toString());
+                    alarm.setDateHumanWakeUp(message.getText().toString());
 
+                    myDbHelper.insertAlarm(alarm, AddAgendaActivity.this);
                 } else {
                     Snackbar snackbar = Snackbar.make(v, R.string.alert_empty, Snackbar.LENGTH_SHORT);
                     View sbView = snackbar.getView();
@@ -165,11 +183,12 @@ public class AddAgendaActivity extends AppCompatActivity implements DatePickerDi
     @Override
     public void onDateSet(DatePickerDialog datePickerDialog, int year, int month, int day) {
 
-        date.setText(day+"/"+(month+1)+"/"+year+"");
+
+        dateEdit.setText(day+"/"+(month+1)+"/"+year+"");
     }
 
     @Override
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
-        hour.setText(hourOfDay+":"+minute);
+        hourEdit.setText(hourOfDay+":"+minute);
     }
 }

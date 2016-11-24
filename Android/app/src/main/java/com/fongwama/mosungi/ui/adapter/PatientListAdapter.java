@@ -43,6 +43,7 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.nomPrenom.setText(listPatients.get(position).getNom()+" "+listPatients.get(position).getPrenom());
         holder.profilImageTxt.setText(listPatients.get(position).getNom());
+        holder.casPatient.setText(listPatients.get(position).getCasPatient());
     }
 
     @Override
@@ -54,11 +55,13 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
 
         public TextView nomPrenom;
         public TextView profilImageTxt;
+        public TextView casPatient;
 
         public ViewHolder(View itemLayout)
         {
             super(itemLayout);
             nomPrenom = (TextView) itemLayout.findViewById(R.id.nom_prenom);
+            casPatient = (TextView) itemLayout.findViewById(R.id.categorie);
             profilImageTxt = (TextView) itemLayout.findViewById(R.id.profilTextImg);
 
             itemLayout.setOnClickListener(this);

@@ -17,11 +17,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_height="wrap_content"
+        <LinearLayout
             android:layout_width="match_parent"
-            style="@style/SpinnerAppTheme"/>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A "
+                android:layout_gravity="center_vertical"
+                android:textSize="18sp"
+                android:layout_marginRight="2dp"
+                />
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                style="@style/SpinnerAppTheme"
+                />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,7 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/date"
+                    android:id="@+id/dates"
                     android:editable="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -70,7 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/hour"
+                    android:id="@+id/hours"
                     android:editable="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

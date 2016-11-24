@@ -72,8 +72,8 @@ public class MyDbHelper extends SQLiteOpenHelper{
                 MyContracts.TablePatient.SEXE+" TEXT NOT NULL, "+
                 MyContracts.TablePatient.DATE+" TEXT NOT NULL, "+
                 MyContracts.TablePatient.TELEPHONE+" TEXT NOT NULL, "+
-                MyContracts.TablePatient.CAS+" TEXT NOT NULL"+
-                MyContracts.TablePatient.CATEGORIE+" TEXT NOT NULL);";
+                MyContracts.TablePatient.CAS+" TEXT NOT NULL,"+
+                MyContracts.TablePatient.CATEGORIE+" TEXT);";
 
         final String SQL_AGENDA = "CREATE TABLE "+
                 MyContracts.TableAgenda.TABLE_NAME+" ("+
@@ -86,8 +86,8 @@ public class MyDbHelper extends SQLiteOpenHelper{
                 MyContracts.TableAgenda.DATE_TARGET+" TEXT NOT NULL,"+
                 MyContracts.TableAgenda.MESSAGE_NUMBERS+" TEXT,"+
                 MyContracts.TableAgenda.ALARM_MUSIC_PATH+" TEXT, "+
-                MyContracts.TableAgenda.ALARM_VOLUME+" INTEGER"+
-                MyContracts.TableAgenda.ALARM_REPEAT_TIME_INTERVAL+" INTEGER"+
+                MyContracts.TableAgenda.ALARM_VOLUME+" INTEGER, "+
+                MyContracts.TableAgenda.ALARM_REPEAT_TIME_INTERVAL+" INTEGER, "+
                 MyContracts.TableAgenda.ALARM_REPEAT_COUNT+" INTEGER);";
 
         //On exécute la requete de création de la table patient
@@ -122,6 +122,33 @@ public class MyDbHelper extends SQLiteOpenHelper{
         }
         catch (Exception ex){
             Log.i(" error Patient "," insertion catched");
+        }
+        db.close();
+    }
+
+    public void insertAlarm(AgendaALarm alarm, Context context){
+
+        MyDbHelper myDbHelper      = new MyDbHelper(context);
+        db = myDbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(MyContracts.TableAgenda.TITRE,    alarm.getTitre());
+        values.put(MyContracts.TableAgenda.MESSAGE,    alarm.getMessage());
+        values.put(MyContracts.TableAgenda.MESSAGE_NUMBERS,    alarm.getMessageNumbers());
+        values.put(MyContracts.TableAgenda.DATE_MILLIS_SET,    alarm.getDateMillisNow());
+        values.put(MyContracts.TableAgenda.DATE_MILLIS_TARGET, alarm.getDateMillisWakeUp());
+        values.put(MyContracts.TableAgenda.DATE_SET,    alarm.getDateHumanNow());
+        values.put(MyContracts.TableAgenda.DATE_TARGET,    alarm.getDateHumanWakeUp());
+        values.put(MyContracts.TableAgenda.ALARM_MUSIC_PATH,    alarm.getMusicPath());
+        values.put(MyContracts.TableAgenda.ALARM_VOLUME,    alarm.getVolumeLevel());
+        values.put(MyContracts.TableAgenda.ALARM_REPEAT_COUNT,    alarm.getRepeatCount()+"");
+        values.put(MyContracts.TableAgenda.ALARM_REPEAT_TIME_INTERVAL,    alarm.getRepeatTimeInterval());
+        try {
+            db.insert(MyContracts.TableAgenda.TABLE_NAME, null, values);
+            Log.i(" tryed Alarm ", " insertion ok");
+        }
+        catch (Exception ex){
+            Log.i(" error Alarm "," insertion catched");
         }
         db.close();
     }
