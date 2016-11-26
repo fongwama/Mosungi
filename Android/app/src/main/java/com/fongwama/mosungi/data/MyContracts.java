@@ -68,6 +68,9 @@ public class MyContracts
         public static final String ALARM_MUSIC_PATH  = "alarm_music_agenda";
         public static final String ALARM_VOLUME  = "alarm_vol_agenda";
 
+        // Fr: show Alarm setted or Not
+        public static final String ALARM_STATE  = "alarm_state_agenda";
+
     }
 
 

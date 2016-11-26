@@ -46,6 +46,7 @@ public class MyDbHelper extends SQLiteOpenHelper{
             MyContracts.TableAgenda.DATE_MILLIS_TARGET,
             MyContracts.TableAgenda.DATE_TARGET,
             MyContracts.TableAgenda.DATE_TARGET,
+            MyContracts.TableAgenda.ALARM_STATE,
             MyContracts.TableAgenda.ALARM_REPEAT_COUNT,
             MyContracts.TableAgenda.ALARM_REPEAT_TIME_INTERVAL,
             MyContracts.TableAgenda.ALARM_MUSIC_PATH,
@@ -78,14 +79,15 @@ public class MyDbHelper extends SQLiteOpenHelper{
         final String SQL_AGENDA = "CREATE TABLE "+
                 MyContracts.TableAgenda.TABLE_NAME+" ("+
                 MyContracts.TableAgenda._ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
-                MyContracts.TableAgenda.TITRE+" TEXT NOT NULL, "+
-                MyContracts.TableAgenda.MESSAGE+" TEXT , "+
+                MyContracts.TableAgenda.TITRE+" TEXT, "+
+                MyContracts.TableAgenda.MESSAGE+" TEXT, "+
                 MyContracts.TableAgenda.DATE_MILLIS_SET+" TEXT NOT NULL, "+
                 MyContracts.TableAgenda.DATE_MILLIS_TARGET+" TEXT NOT NULL,"+
-                MyContracts.TableAgenda.DATE_SET+" TEXT NOT NULL,"+
-                MyContracts.TableAgenda.DATE_TARGET+" TEXT NOT NULL,"+
+                MyContracts.TableAgenda.DATE_SET+" TEXT ,"+
+                MyContracts.TableAgenda.DATE_TARGET+" TEXT,"+
                 MyContracts.TableAgenda.MESSAGE_NUMBERS+" TEXT,"+
                 MyContracts.TableAgenda.ALARM_MUSIC_PATH+" TEXT, "+
+                MyContracts.TableAgenda.ALARM_STATE+" BOOLEAN, "+
                 MyContracts.TableAgenda.ALARM_VOLUME+" INTEGER, "+
                 MyContracts.TableAgenda.ALARM_REPEAT_TIME_INTERVAL+" INTEGER, "+
                 MyContracts.TableAgenda.ALARM_REPEAT_COUNT+" INTEGER);";
@@ -126,7 +128,7 @@ public class MyDbHelper extends SQLiteOpenHelper{
         db.close();
     }
 
-    public void insertAlarm(AgendaALarm alarm, Context context){
+    public long insertAlarm(AgendaALarm alarm, Context context){
 
         MyDbHelper myDbHelper      = new MyDbHelper(context);
         db = myDbHelper.getWritableDatabase();
@@ -140,17 +142,20 @@ public class MyDbHelper extends SQLiteOpenHelper{
         values.put(MyContracts.TableAgenda.DATE_SET,    alarm.getDateHumanNow());
         values.put(MyContracts.TableAgenda.DATE_TARGET,    alarm.getDateHumanWakeUp());
         values.put(MyContracts.TableAgenda.ALARM_MUSIC_PATH,    alarm.getMusicPath());
+        values.put(MyContracts.TableAgenda.ALARM_STATE,    alarm.isState());
         values.put(MyContracts.TableAgenda.ALARM_VOLUME,    alarm.getVolumeLevel());
         values.put(MyContracts.TableAgenda.ALARM_REPEAT_COUNT,    alarm.getRepeatCount()+"");
         values.put(MyContracts.TableAgenda.ALARM_REPEAT_TIME_INTERVAL,    alarm.getRepeatTimeInterval());
+        long success = -1;
         try {
-            db.insert(MyContracts.TableAgenda.TABLE_NAME, null, values);
+            success = db.insert(MyContracts.TableAgenda.TABLE_NAME, null, values);
             Log.i(" tryed Alarm ", " insertion ok");
         }
         catch (Exception ex){
             Log.i(" error Alarm "," insertion catched");
         }
         db.close();
+        return success;
     }
 
     public List<Patient> getAllPatient()
