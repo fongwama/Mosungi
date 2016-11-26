@@ -1,11 +1,13 @@
 package com.fongwama.mosungi.ui.fragments;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +28,9 @@ public class FragmentPatients extends Fragment{
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
 
+    private MyDbHelper myDbHelper;
+    private List<Patient> listPatients;
+    private PatientListAdapter patientListAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,6 +38,15 @@ public class FragmentPatients extends Fragment{
         setRetainInstance(true);
     }
 
+    public void refreshData(){
+        if(patientListAdapter != null){
+
+            listPatients = myDbHelper.getAllPatient();
+            patientListAdapter.setList(listPatients);
+            patientListAdapter.notifyDataSetChanged();
+        }
+
+    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,12 +57,13 @@ public class FragmentPatients extends Fragment{
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
-
-        final MyDbHelper myDbHelper             = new MyDbHelper(getActivity());
-        List<Patient> listPatients              = myDbHelper.getAllPatient();
-        PatientListAdapter patientListAdapter   = new PatientListAdapter(listPatients);
+        myDbHelper   = new MyDbHelper(getActivity());
+        listPatients = myDbHelper.getAllPatient();
+        patientListAdapter = new PatientListAdapter(listPatients);
         recyclerView.setAdapter(patientListAdapter);
 
         return view;
     }
+
 }
+
