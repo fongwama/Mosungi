@@ -107,6 +107,14 @@ public class AddPatientActivity extends AppCompatActivity implements DatePickerD
                         Patient patient         = new Patient(nomPatient, prenomPatient, sexePatient, datePatient, telephonePatient, casPatient);
                         myDbHelper.insertPatient(patient, getApplicationContext());
 
+                        name.getText().clear();
+                        lastname.getText().clear();
+                        telephone.getText().clear();
+                        cas.getText().clear();
+                        date.getText().clear();
+
+                        Snackbar snackbar = Snackbar.make(v, R.string.alert_patient_added, Snackbar.LENGTH_SHORT);
+                        snackbar.show();
                     }
                     else
                     {
