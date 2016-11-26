@@ -39,6 +39,10 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
         return viewHolder;
     }
 
+    public void setList(List<Patient> list){
+        listPatients = list;
+    }
+
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.nomPrenom.setText(listPatients.get(position).getNom()+" "+listPatients.get(position).getPrenom());
