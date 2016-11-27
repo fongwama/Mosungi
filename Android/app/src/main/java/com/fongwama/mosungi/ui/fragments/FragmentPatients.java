@@ -1,5 +1,6 @@
 package com.fongwama.mosungi.ui.fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -18,12 +19,13 @@ import java.util.List;
 import com.fongwama.mosungi.R;
 import com.fongwama.mosungi.data.MyDbHelper;
 import com.fongwama.mosungi.model.Patient;
+import com.fongwama.mosungi.ui.activity.HomeActivity;
 import com.fongwama.mosungi.ui.adapter.PatientListAdapter;
 
 /**
  * Created by Karl on 01/07/2016.
  */
-public class FragmentPatients extends Fragment{
+public class FragmentPatients extends Fragment implements HomeActivity.DataRefreshListener{
 
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
@@ -44,6 +46,7 @@ public class FragmentPatients extends Fragment{
             listPatients = myDbHelper.getAllPatient();
             patientListAdapter.setList(listPatients);
             patientListAdapter.notifyDataSetChanged();
+            Log.i("patients adapter", " notified");
         }
 
     }
@@ -65,5 +68,21 @@ public class FragmentPatients extends Fragment{
         return view;
     }
 
+    @Override
+    public void onDataRefresh() {
+        refreshData();
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        ((HomeActivity) activity).registerDataRefreshListener(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        ((HomeActivity) getActivity()).unregisterDataRefreshListener(this);
+    }
 }
 
