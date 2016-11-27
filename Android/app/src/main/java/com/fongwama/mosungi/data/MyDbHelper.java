@@ -37,6 +37,7 @@ public class MyDbHelper extends SQLiteOpenHelper{
             MyContracts.TablePatient.TELEPHONE,
             MyContracts.TablePatient.CAS,
     };
+
     public static final String[] COLUMN_AGENDA = new String[]{
             MyContracts.TableAgenda._ID,
             MyContracts.TableAgenda.TITRE,
@@ -161,7 +162,7 @@ public class MyDbHelper extends SQLiteOpenHelper{
     public List<Patient> getAllPatient()
     {
         SQLiteDatabase db   = getReadableDatabase();
-        Cursor cursor       = db.query(MyContracts.TablePatient.TABLE_NAME, COLUMN_PATIENT, null, null, null, null, null);
+        Cursor cursor       = db.query(MyContracts.TablePatient.TABLE_NAME, COLUMN_PATIENT, null, null, null, null,MyContracts.TablePatient.NOM);
         List<Patient> listPatients = new ArrayList<>();
 
         if (cursor.moveToFirst())
@@ -171,7 +172,7 @@ public class MyDbHelper extends SQLiteOpenHelper{
                 Patient patient = new Patient();
 
                 patient.setIdPatient(cursor.getInt(cursor.getColumnIndex(MyContracts.TablePatient._ID))+"");
-                patient.setNom(cursor.getString(cursor.getColumnIndex(MyContracts.TablePatient.NOM)));
+                patient.setNom(cursor.getString(cursor.getColumnIndex(MyContracts.TablePatient.NOM)).toUpperCase());
                 patient.setPrenom(cursor.getString(cursor.getColumnIndex(MyContracts.TablePatient.PRENOM)));
                 patient.setDateNaissance(cursor.getString(cursor.getColumnIndex(MyContracts.TablePatient.DATE)));
                 patient.setTelephone(cursor.getString(cursor.getColumnIndex(MyContracts.TablePatient.TELEPHONE)));
