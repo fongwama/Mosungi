@@ -57,8 +57,8 @@ public class MyContracts
           il est preferable de sauvegarder une bonne fois la date Humaine dans la Base de Donnees
           (Optimisation des performances)
         */
-        public static final String DATE_SET     = "human_date_set_agenda";
-        public static final String DATE_TARGET  = "human_date_target_agenda";
+        public static final String DATE_SET     = "human_dateset";
+        public static final String DATE_TARGET  = "human_datetarget";
 
         /*
             En: These two are for the SOUND played by the Alarm (If no sound chosen, the default will be played)
