@@ -8,12 +8,8 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.telephony.SmsManager;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import com.fongwama.mosungi.R;
 import com.fongwama.mosungi.model.Patient;
@@ -43,7 +39,7 @@ public class SendMessageToPatient extends DialogFragment{
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(getString(R.string.to)+" "+patient.getNom()+" "+patient.getPrenom());
-        builder.setIcon(R.drawable.ic_textsms_black_24dp);
+        builder.setIcon(R.drawable.ic_textsms_24dp);
 //        builder.setView(getContentView());
 
         final TextInputEditText input = new TextInputEditText(getActivity());
