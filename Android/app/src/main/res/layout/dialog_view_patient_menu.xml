@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/patient_dialog_marfin_top"
+        android:layout_marginBottom="15dp"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="@dimen/patient_dialog_marfin_top"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_person_profile_24dp"
+            />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Planifier un message"
+            android:textSize="18sp"
+            android:textColor="@color/colorSecondaryText"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/patient_dialog_marfin_top"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/patient_dialog_marfin_left"
+
+            android:src="@drawable/ic_alarm_add_black_24dp"
+            />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Planifier un message"
+            android:textSize="18sp"
+
+            android:layout_marginLeft="@dimen/patient_dialog_marfin_left"
+            android:textColor="@color/colorSecondaryText"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/patient_dialog_marfin_top"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_textsms_24dp"
+            android:layout_marginLeft="@dimen/patient_dialog_marfin_left"
+
+            />
+
+        <TextView
+            android:id="@+id/textNow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Envoyer un message"
+            android:textSize="18sp"
+            android:layout_marginLeft="@dimen/patient_dialog_marfin_left"
+            android:textColor="@color/colorSecondaryText"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/patient_dialog_marfin_top"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_call_black_24dp"
+            android:layout_marginLeft="@dimen/patient_dialog_marfin_left"
+            />
+
+        <TextView
+            android:id="@+id/call"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Appeller"
+            android:textSize="18sp"
+            android:layout_marginLeft="@dimen/patient_dialog_marfin_left"
+            android:textColor="@color/colorSecondaryText"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/patient_dialog_marfin_top"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_edit_24dp"
+            android:layout_marginLeft="@dimen/patient_dialog_marfin_left"
+            />
+
+        <TextView
+            android:id="@+id/update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Modifier les infos"
+            android:textSize="18sp"
+            android:layout_marginLeft="@dimen/patient_dialog_marfin_left"
+            android:textColor="@color/colorSecondaryText"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/patient_dialog_marfin_top"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_alarm_off_black_24dp"
+            android:layout_marginLeft="@dimen/patient_dialog_marfin_left"
+            />
+        <TextView
+            android:id="@+id/alarmOff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Desactiver tout rapel"
+            android:textSize="18sp"
+            android:layout_marginLeft="@dimen/patient_dialog_marfin_left"
+            android:textColor="@color/colorSecondaryText"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/patient_dialog_marfin_top"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_clear_delete_black_24dp"
+            android:layout_marginLeft="@dimen/patient_dialog_marfin_left"
+            />
+        <TextView
+            android:id="@+id/categorieOut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Retirer de tout groupe"
+            android:textSize="18sp"
+            android:layout_marginLeft="@dimen/patient_dialog_marfin_left"
+            android:textColor="@color/colorSecondaryText"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/patient_dialog_marfin_top"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_copy_black_24dp"
+            android:layout_marginLeft="@dimen/patient_dialog_marfin_left"
+            />
+        <TextView
+            android:id="@+id/copyNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Copier le numéro"
+            android:textSize="18sp"
+            android:layout_marginLeft="@dimen/patient_dialog_marfin_left"
+            android:textColor="@color/colorSecondaryText"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/patient_dialog_marfin_top"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_clear_delete_black_24dp"
+            android:layout_marginLeft="@dimen/patient_dialog_marfin_left"
+            />
+
+        <TextView
+            android:id="@+id/delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Suprimer patient"
+            android:textSize="18sp"
+            android:layout_marginLeft="@dimen/patient_dialog_marfin_left"
+            android:textColor="@color/colorSecondaryText"
+            />
+    </LinearLayout>
+</LinearLayout>
