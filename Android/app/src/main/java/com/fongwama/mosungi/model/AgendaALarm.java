@@ -16,7 +16,7 @@ public class AgendaALarm implements Parcelable{
     private long dateMillisWakeUp;
     private String dateHumanNow;
     private String dateHumanWakeUp;
-    private char repeatCount;
+    private int repeatCount;
     private int repeatTimeInterval;
 
     private String musicPath;
@@ -27,7 +27,7 @@ public class AgendaALarm implements Parcelable{
     public AgendaALarm() {
     }
 
-    public AgendaALarm(int id, String titre, String message, String messageNumbers, long dateMillisNow, long dateMillisWakeUp, String dateHumanNow, String dateHumanWakeUp, char repeatCount, int repeatTimeInterval, String musicPath, int volumeLevel, boolean state) {
+    public AgendaALarm(int id, String titre, String message, String messageNumbers, long dateMillisNow, long dateMillisWakeUp, String dateHumanNow, String dateHumanWakeUp, int repeatCount, int repeatTimeInterval, String musicPath, int volumeLevel, boolean state) {
         this.id = id;
         this.titre = titre;
         this.message = message;
@@ -134,11 +134,11 @@ public class AgendaALarm implements Parcelable{
         this.dateHumanWakeUp = dateHumanWakeUp;
     }
 
-    public char getRepeatCount() {
+    public int getRepeatCount() {
         return repeatCount;
     }
 
-    public void setRepeatCount(char repeatCount) {
+    public void setRepeatCount(int repeatCount) {
         this.repeatCount = repeatCount;
     }
 

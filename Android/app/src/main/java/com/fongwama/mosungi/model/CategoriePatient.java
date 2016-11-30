@@ -10,6 +10,9 @@ public class CategoriePatient {
     String description;
     String nom;
 
+    public CategoriePatient() {
+    }
+
     public CategoriePatient(String id, String description, String nom) {
         this.id = id;
         this.description = description;
