@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
@@ -10,10 +14,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/patient_dialog_marfin_top"
+        android:layout_marginTop="@dimen/patient_dialog_margin_top"
         android:layout_marginBottom="15dp"
         android:layout_gravity="center_horizontal"
-        android:paddingBottom="@dimen/patient_dialog_marfin_top"
+        android:paddingBottom="@dimen/patient_dialog_margin_top"
+        android:clickable="true"
+        android:background="@drawable/dialog_item_selector"
         >
 
         <ImageView
@@ -37,10 +43,13 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/addNewAlarm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/patient_dialog_marfin_top"
+        android:layout_marginTop="@dimen/patient_dialog_margin_top"
+        android:clickable="true"
+        android:background="@drawable/dialog_item_selector"
         >
 
         <ImageView
@@ -55,7 +64,7 @@
             android:id="@+id/text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Planifier un message"
+            android:text="@string/popup_patient_plan_sms"
             android:textSize="18sp"
 
             android:layout_marginLeft="@dimen/patient_dialog_marfin_left"
@@ -65,10 +74,13 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/sendSms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/patient_dialog_marfin_top"
+        android:layout_marginTop="@dimen/patient_dialog_margin_top"
+        android:clickable="true"
+        android:background="@drawable/dialog_item_selector"
         >
 
         <ImageView
@@ -83,7 +95,7 @@
             android:id="@+id/textNow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Envoyer un message"
+            android:text="@string/popup_patient_send_sms"
             android:textSize="18sp"
             android:layout_marginLeft="@dimen/patient_dialog_marfin_left"
             android:textColor="@color/colorSecondaryText"
@@ -92,10 +104,13 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/call"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/patient_dialog_marfin_top"
+        android:layout_marginTop="@dimen/patient_dialog_margin_top"
+        android:clickable="true"
+        android:background="@drawable/dialog_item_selector"
         >
 
         <ImageView
@@ -106,10 +121,10 @@
             />
 
         <TextView
-            android:id="@+id/call"
+            android:id="@+id/callPatient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Appeller"
+            android:text="@string/popup_patient_call"
             android:textSize="18sp"
             android:layout_marginLeft="@dimen/patient_dialog_marfin_left"
             android:textColor="@color/colorSecondaryText"
@@ -118,10 +133,13 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/updatePatient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/patient_dialog_marfin_top"
+        android:layout_marginTop="@dimen/patient_dialog_margin_top"
+        android:clickable="true"
+        android:background="@drawable/dialog_item_selector"
         >
 
         <ImageView
@@ -135,7 +153,7 @@
             android:id="@+id/update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Modifier les infos"
+            android:text="@string/popup_patient_update"
             android:textSize="18sp"
             android:layout_marginLeft="@dimen/patient_dialog_marfin_left"
             android:textColor="@color/colorSecondaryText"
@@ -144,10 +162,13 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/desactivateAllAlarm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/patient_dialog_marfin_top"
+        android:layout_marginTop="@dimen/patient_dialog_margin_top"
+        android:clickable="true"
+        android:background="@drawable/dialog_item_selector"
         >
 
         <ImageView
@@ -160,17 +181,21 @@
             android:id="@+id/alarmOff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Desactiver tout rapel"
+            android:text="@string/popup_patient_switch_all_off"
             android:textSize="18sp"
             android:layout_marginLeft="@dimen/patient_dialog_marfin_left"
             android:textColor="@color/colorSecondaryText"
             />
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/clearAllAlarm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/patient_dialog_marfin_top"
+        android:layout_marginTop="@dimen/patient_dialog_margin_top"
+        android:alpha="0.6"
+        android:clickable="true"
+        android:background="@drawable/dialog_item_selector"
         >
 
         <ImageView
@@ -180,10 +205,10 @@
             android:layout_marginLeft="@dimen/patient_dialog_marfin_left"
             />
         <TextView
-            android:id="@+id/categorieOut"
+            android:id="@+id/clearAlarms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Retirer de tout groupe"
+            android:text="@string/popup_patient_remove_from_groups"
             android:textSize="18sp"
             android:layout_marginLeft="@dimen/patient_dialog_marfin_left"
             android:textColor="@color/colorSecondaryText"
@@ -191,10 +216,14 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/copyPatientNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/patient_dialog_marfin_top"
+        android:layout_marginTop="@dimen/patient_dialog_margin_top"
+        android:clickable="true"
+        android:alpha="0.6"
+        android:background="@drawable/dialog_item_selector"
         >
 
         <ImageView
@@ -207,7 +236,7 @@
             android:id="@+id/copyNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Copier le numéro"
+            android:text="@string/popup_patient_copy_number"
             android:textSize="18sp"
             android:layout_marginLeft="@dimen/patient_dialog_marfin_left"
             android:textColor="@color/colorSecondaryText"
@@ -215,10 +244,14 @@
 
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/deletePatient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/patient_dialog_marfin_top"
+        android:layout_marginTop="@dimen/patient_dialog_margin_top"
+        android:layout_marginBottom="@dimen/patient_dialog_margin_top"
+        android:clickable="true"
+        android:background="@drawable/dialog_item_selector"
         >
 
         <ImageView
@@ -232,10 +265,11 @@
             android:id="@+id/delete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Suprimer patient"
+            android:text="@string/popup_patient_delete"
             android:textSize="18sp"
             android:layout_marginLeft="@dimen/patient_dialog_marfin_left"
             android:textColor="@color/colorSecondaryText"
             />
     </LinearLayout>
 </LinearLayout>
+</ScrollView>
