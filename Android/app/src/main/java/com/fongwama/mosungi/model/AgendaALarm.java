@@ -3,31 +3,32 @@ package com.fongwama.mosungi.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by STEVEN on 07/10/2016.
- */
-
 public class AgendaALarm implements Parcelable{
+
     private int id;
     private String titre;
     private String message;
     private String messageNumbers;
+    int testId;
+
     private long dateMillisNow;
     private long dateMillisWakeUp;
     private String dateHumanNow;
     private String dateHumanWakeUp;
+
     private int repeatCount;
     private int repeatTimeInterval;
-
     private String musicPath;
     private int volumeLevel;
-
     private boolean state;
+
+    private int idPatient =0;
+    private int idCategorie = 0;
 
     public AgendaALarm() {
     }
 
-    public AgendaALarm(int id, String titre, String message, String messageNumbers, long dateMillisNow, long dateMillisWakeUp, String dateHumanNow, String dateHumanWakeUp, int repeatCount, int repeatTimeInterval, String musicPath, int volumeLevel, boolean state) {
+    public AgendaALarm(int id, String titre, String message, String messageNumbers, long dateMillisNow, long dateMillisWakeUp, String dateHumanNow, String dateHumanWakeUp, int repeatCount, int repeatTimeInterval, String musicPath, int volumeLevel, boolean state, int idPatient, int idCategorie) {
         this.id = id;
         this.titre = titre;
         this.message = message;
@@ -41,6 +42,8 @@ public class AgendaALarm implements Parcelable{
         this.musicPath = musicPath;
         this.volumeLevel = volumeLevel;
         this.state = state;
+        this.idPatient = idPatient;
+        this.idCategorie = idCategorie;
     }
 
     protected AgendaALarm(Parcel in) {
@@ -52,10 +55,13 @@ public class AgendaALarm implements Parcelable{
         dateMillisWakeUp = in.readLong();
         dateHumanNow = in.readString();
         dateHumanWakeUp = in.readString();
+        repeatCount = in.readInt();
         repeatTimeInterval = in.readInt();
         musicPath = in.readString();
         volumeLevel = in.readInt();
         state = in.readByte() != 0;
+        idPatient = in.readInt();
+        idCategorie = in.readInt();
     }
 
     public static final Creator<AgendaALarm> CREATOR = new Creator<AgendaALarm>() {
@@ -174,6 +180,22 @@ public class AgendaALarm implements Parcelable{
         this.state = state;
     }
 
+    public int getIdPatient() {
+        return idPatient;
+    }
+
+    public void setIdPatient(int idPatient) {
+        this.idPatient = idPatient;
+    }
+
+    public int getIdCategorie() {
+        return idCategorie;
+    }
+
+    public void setIdCategorie(int idCategorie) {
+        this.idCategorie = idCategorie;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -189,9 +211,12 @@ public class AgendaALarm implements Parcelable{
         dest.writeLong(dateMillisWakeUp);
         dest.writeString(dateHumanNow);
         dest.writeString(dateHumanWakeUp);
+        dest.writeInt(repeatCount);
         dest.writeInt(repeatTimeInterval);
         dest.writeString(musicPath);
         dest.writeInt(volumeLevel);
         dest.writeByte((byte) (state ? 1 : 0));
+        dest.writeInt(idPatient);
+        dest.writeInt(idCategorie);
     }
 }

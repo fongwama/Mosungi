@@ -3,10 +3,13 @@ package com.fongwama.mosungi.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.List;
+
 /**
  * Created by Karl on 20/07/2016.
  */
 public class Patient implements Parcelable{
+
     private String idPatient;
     private String nom;
     private String prenom;
@@ -14,12 +17,12 @@ public class Patient implements Parcelable{
     private String dateNaissance;
     private String telephone;
     private String casPatient;
-    private String categories;
+    private List<CategoriePatient> listCat;
 
     public Patient() {
     }
 
-    public Patient(String idPatient, String nom, String prenom, String sexe, String dateNaissance, String telephone, String casPatient, String categories) {
+    public Patient(String idPatient, String nom, String prenom, String sexe, String dateNaissance, String telephone, String casPatient) {
         this.idPatient = idPatient;
         this.nom = nom;
         this.prenom = prenom;
@@ -27,7 +30,6 @@ public class Patient implements Parcelable{
         this.dateNaissance = dateNaissance;
         this.telephone = telephone;
         this.casPatient = casPatient;
-        this.categories = categories;
     }
 
     protected Patient(Parcel in) {
@@ -38,7 +40,7 @@ public class Patient implements Parcelable{
         dateNaissance = in.readString();
         telephone = in.readString();
         casPatient = in.readString();
-        categories = in.readString();
+        listCat = in.createTypedArrayList(CategoriePatient.CREATOR);
     }
 
     public static final Creator<Patient> CREATOR = new Creator<Patient>() {
@@ -109,12 +111,12 @@ public class Patient implements Parcelable{
         this.casPatient = casPatient;
     }
 
-    public String getCategories() {
-        return categories;
+    public List<CategoriePatient> getListCat() {
+        return listCat;
     }
 
-    public void setCategories(String categories) {
-        this.categories = categories;
+    public void setListCat(List<CategoriePatient> listCat) {
+        this.listCat = listCat;
     }
 
     @Override
@@ -131,6 +133,6 @@ public class Patient implements Parcelable{
         dest.writeString(dateNaissance);
         dest.writeString(telephone);
         dest.writeString(casPatient);
-        dest.writeString(categories);
+        dest.writeTypedList(listCat);
     }
 }
