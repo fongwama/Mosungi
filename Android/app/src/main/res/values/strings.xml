@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Mosungui</string>
+    <string name="app_name">Mosungi</string>
     <string name="title_activity_connexion">Connexion</string>
     <string name="title_activity_inscription">Inscription</string>
-    <string name="title_activity_accueil">Mosungui</string>
+    <string name="title_activity_accueil">Mosungi</string>
     <string name="pseudo">Pseudo</string>
     <string name="password">Mot de passe</string>
     <string name="connexion">Connexion</string>
@@ -25,11 +25,28 @@
     <string name="choose_patient">Choisir le patient</string>
     <string name="meeting_date">Choisir la date </string>
     <string name="meeting_hour">Choisir l\'heure</string>
-    <string name="motif">Contenu du message</string>
+    <string name="calendar_title">Courte descripton</string>
+    <string name="motif">Contenu du message à envoyer</string>
     <string name="alert_empty">Veuillez remplir tous les champs</string>
     <string name="alert_phone_format">Numéro de téléphone non valide</string>
+    <string name="alert_patient_added">Patient ajouté avec succès</string>
+    <string name="alert_patient_updated">Patient mis à jour</string>
+    <string name="error_planification_date">Désolé, vous ne pouvez pas planifier un message dans le passé</string>
+    <string name="btn_patient_update">mettre à jour</string>
     <string name="send_message">Envoyer un message</string>
     <string name="send">Envoyer</string>
     <string name="cancel">Annuler</string>
     <string name="to">A</string>
+    <string name="switch_on">Activé</string>
+    <string name="switch_off">Desactivé</string>
+    <string name="popup_patient_plan_sms">Planifier un message</string>
+    <string name="popup_patient_send_sms">Envoyer un message</string>
+    <string name="popup_patient_call">Appeller</string>
+    <string name="popup_patient_update">Modifier les infos</string>
+    <string name="popup_patient_switch_all_off">Desactiver tout rapel</string>
+    <string name="popup_patient_remove_from_groups">Retirer de tout groupe</string>
+    <string name="popup_patient_copy_number">Copier le numéro</string>
+    <string name="popup_patient_delete">Suprimer patient</string>
+    <string name="popup_alarm_switch_off">Desactiver</string>
+    <string name="alert_patients_count">Veuillez ajouter un patient avant toute planification !</string>
 </resources>

@@ -8,12 +8,14 @@
         <!-- Customize your theme here. -->
         <item name="android:spinnerStyle">@style/SpinnerAppTheme</item>
         <item name="android:spinnerDropDownItemStyle">@style/SpinnerDropDownItemAppTheme</item>
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="_AppTheme" parent="Theme.AppCompat.Light">
-
         <item name="android:dropDownSpinnerStyle">@style/SpinnerAppTheme</item>
-
     </style>
 
     <style name="SpinnerAppTheme" parent="android:Widget.Holo.Light.Spinner">
