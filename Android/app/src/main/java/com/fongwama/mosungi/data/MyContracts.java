@@ -2,9 +2,6 @@ package com.fongwama.mosungi.data;
 
 import android.provider.BaseColumns;
 
-/**
- * Created by Karl on 20/07/2016.
- */
 public class MyContracts
 {
     public static class TablePatient implements BaseColumns {
@@ -62,7 +59,6 @@ public class MyContracts
 
         /*
             En: These two are for the SOUND played by the Alarm (If no sound chosen, the default will be played)
-
             Fr: Ces deux Champs sont reservé au SON joué par l'alarme (Au cas où l'utilisateur ne specifi rien, le son par defaut sera utilisé)
          */
         public static final String ALARM_MUSIC_PATH  = "alarm_music_agenda";
@@ -70,6 +66,9 @@ public class MyContracts
 
         // Fr: show Alarm setted or Not
         public static final String ALARM_STATE  = "alarm_state_agenda";
+
+        public static final String ID_PATIENT  = "alarm_id_patient";
+        public static final String ID_CATEGORIE  = "alarm_id_cat";
 
     }
 
