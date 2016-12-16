@@ -1,8 +1,6 @@
 package com.fongwama.mosungi.ui.fragments;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,19 +11,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.fongwama.mosungi.R;
 import com.fongwama.mosungi.data.MyDbHelper;
 import com.fongwama.mosungi.model.Patient;
-import com.fongwama.mosungi.ui.activity.HomeActivity;
+import com.fongwama.mosungi.ui.activity.MainActivity;
 import com.fongwama.mosungi.ui.adapter.PatientListAdapter;
 
-/**
- * Created by Karl on 01/07/2016.
- */
-public class FragmentPatients extends Fragment implements HomeActivity.DataRefreshListener{
+import java.util.List;
+
+public class FragmentPatients extends Fragment implements MainActivity.DataRefreshListener{
 
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
@@ -38,6 +32,7 @@ public class FragmentPatients extends Fragment implements HomeActivity.DataRefre
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+        myDbHelper   = new MyDbHelper(getActivity());
     }
 
     public void refreshData(){
@@ -60,12 +55,11 @@ public class FragmentPatients extends Fragment implements HomeActivity.DataRefre
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
-        myDbHelper   = new MyDbHelper(getActivity());
         listPatients = myDbHelper.getAllPatient();
         patientListAdapter = new PatientListAdapter(listPatients);
         recyclerView.setAdapter(patientListAdapter);
 
-        return view;
+    return view;
     }
 
     @Override
@@ -76,13 +70,19 @@ public class FragmentPatients extends Fragment implements HomeActivity.DataRefre
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        ((HomeActivity) activity).registerDataRefreshListener(this);
+         try {
+             ((MainActivity) activity).registerDataRefreshListener(this);
+         }catch (Exception ex){         }
+
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        ((HomeActivity) getActivity()).unregisterDataRefreshListener(this);
+        try {
+            ((MainActivity) getActivity()).unregisterDataRefreshListener(this);
+        }catch (Exception ex){}
     }
+
 }
 

@@ -38,6 +38,7 @@ public class MosungiVPAdapter extends FragmentPagerAdapter {
             case 0: return res.getString(R.string.patient);
             case 1: return res.getString(R.string.agenda);
         }
+
         return super.getPageTitle(position);
     }
 
@@ -45,4 +46,5 @@ public class MosungiVPAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return 2;
     }
+
 }

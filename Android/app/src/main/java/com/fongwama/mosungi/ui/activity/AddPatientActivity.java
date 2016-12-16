@@ -7,42 +7,47 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.fourmob.datetimepicker.date.DatePickerDialog;
-import com.sleepbot.datetimepicker.time.RadialPickerLayout;
-import com.sleepbot.datetimepicker.time.TimePickerDialog;
 
 import java.util.Calendar;
 
 import com.fongwama.mosungi.R;
 import com.fongwama.mosungi.data.MyDbHelper;
-import com.fongwama.mosungi.functions.ColoredSnackbar;
 import com.fongwama.mosungi.functions.MyFunctions;
 import com.fongwama.mosungi.model.Patient;
 
-public class AddPatientActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+public class AddPatientActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     private TextInputEditText name;
-    private TextInputEditText lastname;
+    private TextInputEditText prenom;
     private TextInputEditText date;
     private TextInputEditText telephone;
     private TextInputEditText cas;
 
     private RadioGroup sexe;
-    private RadioButton sexe_checked;
+    private Button btnAdd;
 
     private FloatingActionButton pick_date;
+    DatePickerDialog datePickerDialog;
 
     public static final String DATEPICKER_TAG = "datepicker";
 
     MyFunctions myFunctions = new MyFunctions();
+
+    Calendar calendarDate;
+    Patient updatePatient;
+    MyDbHelper myDbHelper;
     //ColoredSnackbar coloredSnackbar = new ColoredSnackbar();
 
     @Override
@@ -53,21 +58,43 @@ public class AddPatientActivity extends AppCompatActivity implements DatePickerD
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        final MyDbHelper myDbHelper = new MyDbHelper(getApplicationContext());
+        myDbHelper = new MyDbHelper(getApplicationContext());
+        calendarDate = Calendar.getInstance();
 
         name        = (TextInputEditText)findViewById(R.id.name);
-        lastname    = (TextInputEditText)findViewById(R.id.lastname);
+        prenom      = (TextInputEditText)findViewById(R.id.prenom);
         date        = (TextInputEditText)findViewById(R.id.date);
         telephone   = (TextInputEditText)findViewById(R.id.telephone);
         cas         = (TextInputEditText)findViewById(R.id.cas);
+        btnAdd = (Button) findViewById(R.id.validate);
 
-        sexe            =(RadioGroup)findViewById(R.id.sexe);
-        sexe_checked    = (RadioButton) sexe.findViewById(sexe.getCheckedRadioButtonId());
-
+        sexe      =(RadioGroup)findViewById(R.id.sexe);
         pick_date = (FloatingActionButton) findViewById(R.id.pick_date);
 
-        final Calendar calendar = Calendar.getInstance();
-        final DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        //Au cas il s'agit d'un Update, on recupère le patient dans l'itent
+        Bundle data = getIntent().getExtras();
+        if(data!=null){
+            updatePatient = data.getParcelable(MainActivity.EXTRA_EDIT_PATIENT);
+            if(updatePatient!=null){
+                calendarDate.setTimeInMillis(Long.valueOf(updatePatient.getDateNaissance()));
+                populateViews();
+            }
+        }
+        else
+        {
+            datePickerDialog = DatePickerDialog.newInstance(
+                    AddPatientActivity.this,
+                    calendarDate.get(Calendar.YEAR),
+                    calendarDate.get(Calendar.MONTH),
+                    calendarDate.get(Calendar.DAY_OF_MONTH));
+        }
+
+
+
+        //on limite l'age des patients à 85 ans
+        try {
+            datePickerDialog.setYearRange((calendarDate.get(Calendar.YEAR) - 85), calendarDate.get(Calendar.YEAR));
+        }catch (IllegalArgumentException ex){ex.printStackTrace();}
 
         date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,8 +102,6 @@ public class AddPatientActivity extends AppCompatActivity implements DatePickerD
                 datePickerDialog.show(getSupportFragmentManager(), DATEPICKER_TAG);
             }
         });
-
-
         pick_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,35 +111,46 @@ public class AddPatientActivity extends AppCompatActivity implements DatePickerD
 
 
 
-        findViewById(R.id.validate).setOnClickListener(new View.OnClickListener() {
+        btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (myFunctions.checkTextInputEditText(name) &&
-                        myFunctions.checkTextInputEditText(lastname) &&
+                        myFunctions.checkTextInputEditText(prenom) &&
                         myFunctions.checkTextInputEditText(date) &&
                         myFunctions.checkTextInputEditText(telephone) &&
                         myFunctions.checkTextInputEditText(cas))
                 {
-                    if (myFunctions.checkPhoneNumberFormat(telephone))
-                    {
-                        String nomPatient       = name.getText().toString();
-                        String prenomPatient    = lastname.getText().toString();
-                        String datePatient      = date.getText().toString();
+                    if (myFunctions.checkPhoneNumberFormat(telephone)) {
+                        String nomPatient = name.getText().toString().toLowerCase();
+                        String prenomPatient = prenom.getText().toString().toLowerCase();
                         String telephonePatient = telephone.getText().toString();
-                        String casPatient       = cas.getText().toString();
-                        String sexePatient      = sexe_checked.getText().toString();
+                        String casPatient = cas.getText().toString();
+                        String sexePatient = sexe.getCheckedRadioButtonId() == R.id.radioM ? "M" : "F";
+                        Log.i("______ sexe", sexePatient);
+                        //On prend la Date du patient en format unix(dateInMillis)
+                        String datePatient = calendarDate.getTimeInMillis() + "";
 
-                        Patient patient         = new Patient(nomPatient, prenomPatient, sexePatient, datePatient, telephonePatient, casPatient);
-                        myDbHelper.insertPatient(patient, getApplicationContext());
+                        Patient patient = new Patient(null, nomPatient, prenomPatient, sexePatient, datePatient, telephonePatient, casPatient);
 
-                        name.getText().clear();
-                        lastname.getText().clear();
-                        telephone.getText().clear();
-                        cas.getText().clear();
-                        date.getText().clear();
 
-                        Snackbar snackbar = Snackbar.make(v, R.string.alert_patient_added, Snackbar.LENGTH_SHORT);
-                        snackbar.show();
+                        if (updatePatient == null) {
+                            myDbHelper.insertPatient(patient, getApplicationContext());
+
+                            name.getText().clear();
+                            prenom.getText().clear();
+                            telephone.getText().clear();
+                            cas.getText().clear();
+                            date.getText().clear();
+
+                            Toast.makeText(AddPatientActivity.this, R.string.alert_patient_added, Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            //On recupère l'id du patient
+                            patient.setIdPatient(updatePatient.getIdPatient());
+                            myDbHelper.updatePatient(patient);
+                            Toast.makeText(AddPatientActivity.this, R.string.alert_patient_updated, Toast.LENGTH_SHORT).show();
+                        }
+
                     }
                     else
                     {
@@ -133,12 +169,43 @@ public class AddPatientActivity extends AppCompatActivity implements DatePickerD
                     TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
                     textView.setTextColor(Color.WHITE);
                     snackbar.show();
-                    //coloredSnackbar.alert(snackbar, getApplicationContext()).show();
                 }
             }
         });
 
 
+    }
+
+    //Methode utilisé uniquement pour le UPDATE
+    private void populateViews() {
+
+        name.setText(updatePatient.getNom());
+        prenom.setText(updatePatient.getPrenom());
+        telephone.setText(updatePatient.getTelephone());
+        cas.setText(updatePatient.getCasPatient());
+
+        date.setText(MyFunctions.getReadableShortDate(calendarDate.getTimeInMillis()));
+
+        this.datePickerDialog = DatePickerDialog.newInstance(
+                this,
+                calendarDate.get(Calendar.YEAR),
+                calendarDate.get(Calendar.MONTH),
+                calendarDate.get(Calendar.DAY_OF_MONTH));
+
+        //on limite l'age des patients à contacter à 85 ans
+        try {
+            datePickerDialog.setYearRange((calendarDate.get(Calendar.YEAR) - 85), calendarDate.get(Calendar.YEAR));
+        }catch (IllegalArgumentException ex){
+            Log.e("_____","min year end must > 1902");
+        }
+        Log.e("sex val__","__"+updatePatient.getSexe());
+        //On
+        if(updatePatient.getSexe().toLowerCase().equals("m"))
+            ((RadioButton)sexe.findViewById(R.id.radioM)).setChecked(true);
+        else
+            ((RadioButton)sexe.findViewById(R.id.radioF)).setChecked(true);
+
+        btnAdd.setText(getResources().getString(R.string.btn_patient_update));
     }
 
     @Override
@@ -158,11 +225,7 @@ public class AddPatientActivity extends AppCompatActivity implements DatePickerD
 
     @Override
     public void onDateSet(DatePickerDialog datePickerDialog, int year, int month, int day) {
-        date.setText(day+"/"+(month+1)+"/"+year+"");
-    }
-
-    @Override
-    public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
-
+        calendarDate.set(year, month, day);
+        date.setText(MyFunctions.getReadableShortDate(Long.valueOf(calendarDate.getTimeInMillis())));
     }
 }

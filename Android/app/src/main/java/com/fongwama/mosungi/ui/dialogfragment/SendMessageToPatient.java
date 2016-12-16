@@ -38,7 +38,7 @@ public class SendMessageToPatient extends DialogFragment{
         patient = getArguments().getParcelable("PATIENT");
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(getString(R.string.to)+" "+patient.getNom()+" "+patient.getPrenom());
+        builder.setTitle(getString(R.string.to)+" "+patient.getNom()+" "+patient.getPrenom()+"\n"+patient.getTelephone());
         builder.setIcon(R.drawable.ic_textsms_24dp);
 //        builder.setView(getContentView());
 

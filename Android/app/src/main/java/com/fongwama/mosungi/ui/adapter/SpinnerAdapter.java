@@ -28,6 +28,12 @@ public class SpinnerAdapter extends BaseAdapter{
         layoutInflater = layoutInflater.from(context);
     }
 
+    public void setListPatient(List<Patient>  list)
+    {
+        if(list!=null)
+        this.listPatient = list;
+    }
+
     @Override
     public int getCount() {
         return listPatient.size();
