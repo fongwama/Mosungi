@@ -3,9 +3,14 @@
     package="com.fongwama.mosungi">
 
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+
     <uses-permission android:name="android.permission.SEND_SMS"/>
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
     <uses-permission android:name="android.permission.READ_SMS"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -14,38 +19,56 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".SplashActivity"
+            android:screenOrientation="sensorPortrait"
+            android:configChanges="orientation"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <activity
             android:name=".ui.activity.ConnexionActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_connexion"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".ui.activity.InscriptionActivity"
             android:label="@string/title_activity_inscription"
+            android:screenOrientation="sensorPortrait"
+            android:configChanges="orientation"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.activity.HomeActivity"
+            android:name=".ui.activity.MainActivity"
             android:label="@string/title_activity_accueil"
+            android:screenOrientation="sensorPortrait"
+            android:configChanges="orientation"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".ui.activity.AddPatientActivity"
             android:label="@string/title_activity_add_patient"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="sensorPortrait"
+            android:configChanges="orientation"
+            android:parentActivityName=".SplashActivity"
+            />
         <activity
             android:name=".ui.activity.AddAgendaActivity"
             android:label="@string/title_activity_add_agenda"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".ui.activity.AddMeetingActivity"
-            android:label="@string/title_activity_add_meeting"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="sensorPortrait"
+            android:configChanges="orientation"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".SplashActivity"
+            />
+
+        <service
+            android:name=".background.AlarmService"
+            android:enabled="true" />
+        <receiver android:name=".background.AlarmReceiver" />
     </application>
 
 </manifest>

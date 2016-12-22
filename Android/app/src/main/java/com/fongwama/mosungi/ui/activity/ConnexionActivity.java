@@ -2,6 +2,7 @@ package com.fongwama.mosungi.ui.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -32,6 +33,8 @@ public class ConnexionActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources() .getColor(R.color.colorPrimary)));
+
         coordinatorLayout = (CoordinatorLayout)findViewById(R.id.cordinatorLayout);
 
         pseudo      = (TextInputEditText) findViewById(R.id.pseudo);
@@ -47,7 +50,7 @@ public class ConnexionActivity extends AppCompatActivity {
                     String pseudoText   = pseudo.getText().toString();
                     String passwordText = password.getText().toString();
 
-                    startActivity(new Intent(ConnexionActivity.this, HomeActivity.class));
+                    startActivity(new Intent(ConnexionActivity.this, MainActivity.class));
                 }
                 else
                 {

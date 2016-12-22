@@ -8,9 +8,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
-import com.fongwama.mosungi.ui.activity.HomeActivity;
+import com.fongwama.mosungi.ui.activity.MainActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity {
 
     private TextView appName;
     private Animation animation;
@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_splash);
 
         appName = (TextView)findViewById(R.id.app_name);
 
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 }catch (InterruptedException e){
                     e.printStackTrace();
                 }finally {
-                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
                 }
             }
         }; time.start();

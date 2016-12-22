@@ -1,0 +1,178 @@
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:background="@drawable/dialog_item_selector"
+    android:orientation="horizontal"
+    android:baselineAligned="false">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="0dp"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="1dp"
+            >
+
+            <RelativeLayout
+                android:id="@+id/image_container"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_gravity="center_vertical"
+                android:background="?android:attr/selectableItemBackground"
+                android:padding="2.5dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/image"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:src="@color/colorAccent" />
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="Lun\n28\nSEP"
+                    android:maxLength="15"
+                    android:gravity="center"
+                    android:textColor="@color/icons"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/name_container"
+                android:layout_toRightOf="@+id/image_container"
+                android:layout_toEndOf="@+id/image_container"
+                android:layout_toLeftOf="@+id/icons_container"
+                android:layout_toStartOf="@+id/icons_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="2dp"
+                android:layout_marginLeft="2dp">
+
+                <!-- Il est très important que le champ android:text="" soit vide comme tel-->
+                <TextView
+                    android:id="@+id/nomPatient"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:textColor="@color/colorSecondaryText" />
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="petite description de l'alarm"
+                    android:layout_below="@+id/nomPatient"
+                    android:layout_toLeftOf="@+id/switcher"
+                    android:maxLines="2"
+                    android:textSize="10sp"
+                    android:ellipsize="end"
+                    android:textColor="@color/colorSecondaryText" />
+
+
+                <Switch
+                    android:id="@+id/switcher"
+                    android:layout_width="wrap_content"
+                    android:textSize="14sp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/nomPatient"
+                    />
+            </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/icons_container"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_marginLeft="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginRight="2dp"
+            android:padding="1dp"
+            android:visibility="gone"
+
+            android:layout_toLeftOf="@+id/time_container"
+            android:layout_toStartOf="@+id/time_container"
+            >
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/time_container"
+                android:layout_width="70dp"
+                android:layout_height="55dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:layout_marginLeft="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginRight="2dp"
+                android:padding="1dp">
+
+                <TextView
+                    android:text="2016"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textScaleX="2"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:textSize="9sp"
+                    />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:gravity="end"
+                    >
+                <TextView
+                    android:id="@+id/timeHour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:text="22H"
+                    android:textColor="@color/colorSecondaryText"
+                    android:textSize="19sp"
+                    android:scaleY="2.5"
+                    android:layout_marginTop="5dp"
+                    />
+
+                <TextView
+                    android:id="@+id/time_separator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:text=":"
+                    android:textColor="@color/colorSecondaryText"
+                    android:textSize="19sp"
+                    android:scaleY="1.8"
+                    android:layout_marginTop="5dp"
+                    />
+
+                    <TextView
+                    android:id="@+id/timeMin"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:text="56"
+                    android:textColor="@color/colorSecondaryText"
+                    android:textSize="19sp"
+                    android:scaleY="2.5"
+                    />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

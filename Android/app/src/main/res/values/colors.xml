@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#cd1946</color>
+    <color name="primaryColor">#cd1946</color>
     <color name="colorPrimaryDark">#582134</color>
     <color name="colorAccent2">#582134</color>
     <color name="colorAccent">#537576</color>
     <color name="colorPrimaryLight">#F8BBD0</color>
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#727272</color>
+    <color name="mosungi_material_icons">#FF777777</color>
+    <color name="mosungi_material_icons_disabled">#a4a4a4</color>
     <color name="colorTextHint">#90A4AE</color>
     <color name="window_background">#eef3fa</color>
     <color name="icons">#FFFFFF</color>
@@ -15,6 +18,7 @@
 
     <color name="colorFab1">#ea6447</color>
     <color name="colorFab2">#eac773</color>
+    <color name="colorFab3">#3b69df</color>
 
     <color name="btn_default">#537576</color>
     <color name="btn_pressed">#80b8ab</color>

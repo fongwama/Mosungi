@@ -4,4 +4,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="textSize">15sp</dimen>
+    <dimen name="patient_dialog_marfin_left">10dp</dimen>
+    <dimen name="patient_dialog_margin_top">8dp</dimen>
 </resources>
