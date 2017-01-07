@@ -352,6 +352,19 @@ public class MyDbHelper extends SQLiteOpenHelper {
         return 0;
     }
 
+    public int getAlarmCountByPatient(String idPatient){
+        db = getReadableDatabase();
+
+        Cursor cursor = db.query(MyContracts.TableAgenda.TABLE_NAME,new String[]{MyContracts.TableAgenda._ID},MyContracts.TableAgenda.ID_PATIENT+"=?",new String[]{idPatient},null,null,null);
+        if (cursor == null)
+            return 0;
+
+        if (cursor.moveToFirst())
+            return cursor.getCount();
+
+        return 0;
+    }
+
     public CategoriePatient getCategorieById(String idCat) {
         db = getReadableDatabase();
         Cursor cursor = db.query(MyContracts.TableCategorie.TABLE_NAME, COLUMN_CATEGORIE, null, null, null, null, null);
