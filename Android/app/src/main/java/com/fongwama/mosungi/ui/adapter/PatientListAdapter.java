@@ -1,37 +1,36 @@
 package com.fongwama.mosungi.ui.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import com.fongwama.mosungi.R;
+import com.fongwama.mosungi.data.MyDbHelper;
 import com.fongwama.mosungi.model.Patient;
 import com.fongwama.mosungi.ui.dialogfragment.PatientManagementMenu;
 import com.fongwama.mosungi.ui.dialogfragment.SendMessageToPatient;
 
-import de.hdodenhof.circleimageview.CircleImageView;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- * Created by Karl on 27/07/2016.
- */
 public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.ViewHolder>{
 
     public List<Patient> listPatients = new ArrayList<>();
+    private MyDbHelper helper;
+    Context context;
 
-    public PatientListAdapter(List<Patient> listPatients) {
+    public PatientListAdapter(List<Patient> listPatients, Context context) {
         this.listPatients = listPatients;
+        this.context = context;
+        helper = new MyDbHelper(this.context);
+
     }
 
     @Override
@@ -70,6 +69,16 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
                return false;
             }
         });
+
+
+        //On affiche le nombre d'alarms programé pour un patient
+        int alarmsCount = helper.getAlarmCountByPatient(listPatients.get(position).getIdPatient());
+        if(alarmsCount > 0){
+            holder.iconsContainer.setVisibility(View.VISIBLE);
+            holder.alarmsCount.setText(alarmsCount+"");
+        }
+        else holder.iconsContainer.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
@@ -79,9 +88,11 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public TextView nomPrenom;
-        public TextView profilImageTxt;
-        public TextView casPatient;
+        private TextView nomPrenom;
+        private TextView profilImageTxt;
+        private TextView casPatient;
+        private TextView alarmsCount;
+        private RelativeLayout iconsContainer;
 
         public ViewHolder(View itemLayout) {
             super(itemLayout);
@@ -91,6 +102,9 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
             nomPrenom.setTypeface(font);
             casPatient = (TextView) itemLayout.findViewById(R.id.categorie);
             profilImageTxt = (TextView) itemLayout.findViewById(R.id.profilTextImg);
+
+            alarmsCount = (TextView) itemLayout.findViewById(R.id.alarmCount);
+            iconsContainer = (RelativeLayout) itemLayout.findViewById(R.id.iconsContainer);
 
             itemLayout.setOnClickListener(this);
         }
