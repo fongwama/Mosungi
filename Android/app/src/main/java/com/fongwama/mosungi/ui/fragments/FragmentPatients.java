@@ -56,7 +56,7 @@ public class FragmentPatients extends Fragment implements MainActivity.DataRefre
         recyclerView.setHasFixedSize(true);
 
         listPatients = myDbHelper.getAllPatient();
-        patientListAdapter = new PatientListAdapter(listPatients);
+        patientListAdapter = new PatientListAdapter(listPatients, getActivity());
         recyclerView.setAdapter(patientListAdapter);
 
     return view;
