@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.preference.PreferenceManager;
 import android.support.v7.app.NotificationCompat;
 import android.telephony.SmsManager;
 import android.util.Log;
@@ -99,7 +100,10 @@ public class AlarmService extends IntentService {
 
     private void sendSmsToPatient(String msg, String number) {
 
-            SmsManager.getDefault().sendTextMessage(number, null, msg, null, null);
+        //Ajout de la signature
+        msg += "\n" + PreferenceManager.getDefaultSharedPreferences(this).getString(getString(R.string.pref_sms_signature_key), getString(R.string.pref_sms_default_value));
+
+        SmsManager.getDefault().sendTextMessage(number, null, msg, null, null);
     }
 
     private void sendSmsToCategorie(String msg, String numbers) {

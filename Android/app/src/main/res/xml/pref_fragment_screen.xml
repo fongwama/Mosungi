@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference android:defaultValue="@string/pref_sms_default_value"
+        android:key="@string/pref_sms_signature_key" android:maxLines="2"
+        android:selectAllOnFocus="true" android:title="@string/pref_sms_signature_title" />
+</PreferenceScreen>
