@@ -125,4 +125,6 @@
     <string name="pref_sms_signature_key">pref.signature.key</string>
     <string name="pref_sms_signature_title">Signature</string>
     <string name="pref_sms_default_value">Ex: Dr Fongwama Opensource</string>
+    <string name="fab_label_ajout_patient">Ajouter un patient</string>
+    <string name="fab_label_ajout_au_calendrier">Ajouter au calendrier</string>
 </resources>
