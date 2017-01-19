@@ -265,6 +265,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
             }
             while (cursor.moveToNext());
         }
+        cursor.close();
         db.close();
         return listPatients;
     }
@@ -293,6 +294,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
             }
             while (cursor.moveToNext());
         }
+        cursor.close();
         db.close();
         return numbers;
     }
@@ -320,6 +322,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
             }
             while (cursor.moveToNext());
         }
+        cursor.close();
         db.close();
         return patient;
     }
@@ -336,6 +339,8 @@ public class MyDbHelper extends SQLiteOpenHelper {
             return cursor.getCount();
         }
 
+        cursor.close();
+        db.close();
         return 0;
     }
 
@@ -349,6 +354,8 @@ public class MyDbHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst())
             return cursor.getCount();
 
+        cursor.close();
+        db.close();
         return 0;
     }
 
@@ -362,6 +369,8 @@ public class MyDbHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst())
             return cursor.getCount();
 
+        cursor.close();
+        db.close();
         return 0;
     }
 

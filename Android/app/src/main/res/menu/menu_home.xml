@@ -5,9 +5,7 @@
     tools:context=".SplashActivity">
     <item
         android:id="@+id/action_settings"
-        android:title="reglages"
-        android:orderInCategory="100"
+        android:orderInCategory="100" android:title="reglages"
         app:showAsAction="never"
-        android:enabled="false"
         />
 </menu>

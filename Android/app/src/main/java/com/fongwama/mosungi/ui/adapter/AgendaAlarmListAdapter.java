@@ -81,19 +81,21 @@ public class AgendaAlarmListAdapter extends RecyclerView.Adapter<AgendaAlarmList
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-
-                if(MyFunctions.checkSMSPermissions(context))
-                    Log.i("Permission","granted");
-                else {
-                    Log.e("Permission", "Denied");
-                    return;
+                //On demande les permisions si l'alarme actuel veut passer de OFF à ON
+                if( ! listAlarms.get(position).isState()){
+                    if(MyFunctions.checkSMSPermissions(context))
+                        Log.i("Permission","granted");
+                    else {
+                        Log.e("Permission", "Denied");
+                        return;
+                    }
                 }
+
                 //Si --le temps programé n'est pas au futur ET --l'utilisateur veut activer l'alarm
                 //TODO : lui faire comprendre que c'est impossible | ensuite le proposer de modifier la date/l'heure
                 if( isChecked &&
                         System.currentTimeMillis() > listAlarms.get(position).getDateMillisWakeUp()
-                        )
-                {
+                        ){
 
                     //ceci évite que le Toast soit affiché lors du peuplement de la liste
                     // Mais, uniquement lors d'un changement d'état sur un item de la liste
